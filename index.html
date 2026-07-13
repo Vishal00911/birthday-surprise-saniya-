@@ -343,9 +343,9 @@
     }
 
     .message-card {
-      max-width: 980px;
-      margin: 46px auto 0;
-      padding: clamp(8px, 2vw, 18px) 0;
+      max-width: 860px;
+      margin: 44px auto 0;
+      padding: clamp(18px, 3vw, 30px) 0;
       border: 0;
       border-radius: 0;
       background: transparent;
@@ -361,7 +361,7 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      margin: 0 0 42px;
+      margin: 0 0 36px;
       color: var(--petal-deep);
       font-size: 0.78rem;
       font-weight: 800;
@@ -380,28 +380,29 @@
     .message-lines {
       color: #171717;
       font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.8rem, 7.6vw, 5.85rem);
+      font-size: clamp(2.1rem, 5.15vw, 4.25rem);
       font-style: italic;
       font-weight: 600;
       letter-spacing: 0;
-      line-height: 0.96;
+      line-height: 1.12;
     }
 
     .message-lines .blush {
       display: block;
+      margin: 0.08em 0;
       color: var(--petal-deep);
     }
 
     .message-lines .small-break {
       display: block;
-      margin-top: 0.34em;
+      margin-top: 0.72em;
     }
 
     .message-lines .closing-note {
       display: block;
-      margin-top: 0.42em;
-      font-size: clamp(2.05rem, 5vw, 4rem);
-      line-height: 1.05;
+      margin-top: 0.62em;
+      font-size: 0.74em;
+      line-height: 1.22;
     }
 
     .surprise-grid {
@@ -608,12 +609,14 @@
       }
 
       .message-card {
-        margin-top: 34px;
+        max-width: 94vw;
+        margin-top: 30px;
+        padding-block: 12px;
       }
 
       .note-kicker {
         gap: 12px;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
         font-size: 0.66rem;
         letter-spacing: 0.18em;
       }
@@ -623,7 +626,17 @@
       }
 
       .message-lines {
-        font-size: clamp(2.55rem, 12vw, 4.2rem);
+        font-size: clamp(2.05rem, 9.4vw, 3.2rem);
+        line-height: 1.13;
+      }
+
+      .message-lines .small-break {
+        margin-top: 0.64em;
+      }
+
+      .message-lines .closing-note {
+        font-size: 0.72em;
+        line-height: 1.24;
       }
 
       .hero-pill {
