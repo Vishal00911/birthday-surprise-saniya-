@@ -12,6 +12,9 @@
       --paper: #fffdf9;
       --petal: #f4d8d4;
       --petal-deep: #e8b9b2;
+      --dream-pink: rgba(244, 196, 205, 0.62);
+      --dream-lavender: rgba(205, 193, 236, 0.5);
+      --dream-peach: rgba(247, 207, 177, 0.54);
       --sage: #7f927b;
       --ink: #2f2f2b;
       --muted: #76736c;
@@ -69,6 +72,7 @@
       position: absolute;
       width: var(--size);
       height: var(--size);
+      filter: blur(0.1px);
       opacity: 0;
       animation: flowerFloat var(--duration) linear infinite;
     }
@@ -79,13 +83,13 @@
       position: absolute;
       inset: 18% 42%;
       border-radius: 999px 999px 0 999px;
-      background: rgba(244, 216, 212, 0.74);
+      background: var(--bloom-a, var(--dream-pink));
       transform-origin: 50% 82%;
     }
 
     .float-flower::after {
       transform: rotate(72deg);
-      background: rgba(232, 185, 178, 0.62);
+      background: var(--bloom-b, var(--dream-lavender));
     }
 
     .float-flower span,
@@ -94,7 +98,7 @@
       position: absolute;
       inset: 18% 42%;
       border-radius: 999px 999px 0 999px;
-      background: rgba(255, 244, 217, 0.78);
+      background: var(--bloom-c, var(--dream-peach));
       content: "";
       transform-origin: 50% 82%;
     }
@@ -106,12 +110,12 @@
 
     .float-flower span::before {
       transform: rotate(72deg);
-      background: rgba(127, 146, 123, 0.28);
+      background: var(--bloom-d, rgba(205, 193, 236, 0.34));
     }
 
     .float-flower span::after {
       transform: rotate(144deg);
-      background: rgba(244, 216, 212, 0.58);
+      background: var(--bloom-e, rgba(247, 207, 177, 0.42));
     }
 
     .float-petal {
@@ -119,22 +123,23 @@
       width: var(--size);
       height: calc(var(--size) * 1.35);
       border-radius: 999px 999px 999px 0;
-      background: rgba(244, 216, 212, 0.7);
+      background: var(--bloom-a, var(--dream-pink));
+      filter: blur(0.2px);
       opacity: 0;
       animation: flowerFloat var(--duration) linear infinite;
     }
 
     @keyframes flowerFloat {
       from {
-        transform: translate3d(0, 108vh, 0) rotate(0deg) scale(0.86);
+        transform: translate3d(0, 108vh, 0) rotate(0deg) scale(0.82);
         opacity: 0;
       }
-      18%,
-      78% {
-        opacity: 1;
+      20%,
+      76% {
+        opacity: var(--float-opacity, 0.72);
       }
       to {
-        transform: translate3d(var(--drift), -12vh, 0) rotate(220deg) scale(1);
+        transform: translate3d(var(--drift), -12vh, 0) rotate(240deg) scale(1);
         opacity: 0;
       }
     }
@@ -846,18 +851,31 @@
     const surpriseVideo = document.querySelector(".surprise-video");
 
     function createFloatingFlowers() {
-      for (let index = 0; index < 24; index += 1) {
+      const palettes = [
+        ["rgba(244, 196, 205, 0.6)", "rgba(205, 193, 236, 0.44)", "rgba(247, 207, 177, 0.5)", "rgba(244, 196, 205, 0.36)", "rgba(255, 235, 220, 0.44)"],
+        ["rgba(205, 193, 236, 0.54)", "rgba(247, 207, 177, 0.46)", "rgba(244, 196, 205, 0.44)", "rgba(218, 207, 242, 0.36)", "rgba(255, 232, 214, 0.42)"],
+        ["rgba(247, 207, 177, 0.56)", "rgba(244, 196, 205, 0.48)", "rgba(205, 193, 236, 0.38)", "rgba(255, 231, 210, 0.42)", "rgba(244, 196, 205, 0.34)"]
+      ];
+
+      for (let index = 0; index < 34; index += 1) {
         const item = document.createElement("span");
-        const isFlower = index % 3 !== 0;
+        const isFlower = index % 4 !== 0;
+        const palette = palettes[index % palettes.length];
         item.className = isFlower ? "float-flower" : "float-petal";
         if (isFlower) {
           item.appendChild(document.createElement("span"));
         }
         item.style.left = `${Math.random() * 100}%`;
-        item.style.setProperty("--size", `${isFlower ? 12 + Math.random() * 18 : 6 + Math.random() * 8}px`);
-        item.style.setProperty("--drift", `${Math.random() * 120 - 60}px`);
-        item.style.setProperty("--duration", `${16 + Math.random() * 12}s`);
-        item.style.animationDelay = `${Math.random() * -22}s`;
+        item.style.setProperty("--size", `${isFlower ? 10 + Math.random() * 20 : 6 + Math.random() * 10}px`);
+        item.style.setProperty("--drift", `${Math.random() * 180 - 90}px`);
+        item.style.setProperty("--duration", `${22 + Math.random() * 16}s`);
+        item.style.setProperty("--float-opacity", `${0.38 + Math.random() * 0.36}`);
+        item.style.setProperty("--bloom-a", palette[0]);
+        item.style.setProperty("--bloom-b", palette[1]);
+        item.style.setProperty("--bloom-c", palette[2]);
+        item.style.setProperty("--bloom-d", palette[3]);
+        item.style.setProperty("--bloom-e", palette[4]);
+        item.style.animationDelay = `${Math.random() * -34}s`;
         floatingFlowers.appendChild(item);
       }
     }
