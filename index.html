@@ -411,8 +411,59 @@
       grid-template-columns: minmax(220px, 330px) minmax(0, 1fr);
       align-items: center;
       gap: clamp(32px, 8vw, 82px);
-      margin-top: 42px;
+      margin-top: 58px;
       text-align: left;
+    }
+
+    .surprise-intro {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .surprise-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 0 0 34px;
+      color: var(--petal-deep);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .surprise-kicker::before,
+    .surprise-kicker::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.86;
+    }
+
+    .surprise-title {
+      margin: 0;
+      color: #171717;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.75rem, 7.2vw, 5.6rem);
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.02;
+    }
+
+    .surprise-title .pink {
+      display: block;
+      color: var(--petal-deep);
+    }
+
+    .surprise-instruction {
+      margin: 26px 0 0;
+      color: #8f8d89;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.6;
     }
 
     .gift-button {
@@ -607,7 +658,24 @@
 
       .surprise-grid {
         grid-template-columns: 1fr;
+        margin-top: 44px;
         text-align: center;
+      }
+
+      .surprise-kicker {
+        gap: 12px;
+        margin-bottom: 26px;
+        font-size: 0.66rem;
+        letter-spacing: 0.18em;
+      }
+
+      .surprise-kicker::before,
+      .surprise-kicker::after {
+        width: 28px;
+      }
+
+      .surprise-title {
+        font-size: clamp(2.5rem, 12vw, 4.1rem);
       }
 
       .gift-button {
@@ -737,8 +805,14 @@
 
     <section class="section" id="surprise">
       <div class="content fade-in">
-        <p class="eyebrow">One small surprise</p>
-        <h2>Open this gently</h2>
+        <div class="surprise-intro">
+          <p class="surprise-kicker">A little surprise</p>
+          <p class="surprise-title">
+            Something special
+            <span class="pink">waits inside.</span>
+          </p>
+          <p class="surprise-instruction">Tap the gift to open it.</p>
+        </div>
         <div class="surprise-grid">
           <button class="gift-button" type="button" aria-label="Open birthday gift">
             <span class="gift-lid"></span>
