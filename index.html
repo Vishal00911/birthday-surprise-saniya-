@@ -980,6 +980,18 @@
   </main>
 
   <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+
+    window.addEventListener("load", () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+
     const floatingFlowers = document.querySelector(".floating-flowers");
     const giftButton = document.querySelector(".gift-button");
     const revealPanel = document.querySelector(".reveal-panel");
