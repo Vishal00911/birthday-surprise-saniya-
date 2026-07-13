@@ -387,22 +387,20 @@
       line-height: 1.12;
     }
 
-    .message-lines .blush {
+    .message-lines .note-line {
       display: block;
-      margin: 0.08em 0;
+    }
+
+    .message-lines .note-line + .note-line {
+      margin-top: 0.08em;
+    }
+
+    .message-lines .pink {
       color: var(--petal-deep);
     }
 
-    .message-lines .small-break {
-      display: block;
-      margin-top: 0.72em;
-    }
-
-    .message-lines .closing-note {
-      display: block;
-      margin-top: 0.62em;
-      font-size: 0.74em;
-      line-height: 1.22;
+    .message-lines .group-gap {
+      margin-top: 0.48em;
     }
 
     .surprise-grid {
@@ -630,15 +628,6 @@
         line-height: 1.13;
       }
 
-      .message-lines .small-break {
-        margin-top: 0.64em;
-      }
-
-      .message-lines .closing-note {
-        font-size: 0.72em;
-        line-height: 1.24;
-      }
-
       .hero-pill {
         margin-bottom: 34px;
         padding-inline: 18px;
@@ -714,11 +703,11 @@
         <div class="message-card">
           <p class="note-kicker">A note from me</p>
           <p class="message-lines">
-            I hope your day is filled with
-            <span class="blush">so much happiness, laughter,</span>
-            and all the love you deserve!
-            <span class="small-break">You are such an amazing friend and I am so grateful for you!</span>
-            <span class="closing-note">
+            <span class="note-line">I hope your day is filled with</span>
+            <span class="note-line">so much happiness, laughter,</span>
+            <span class="note-line pink group-gap">and all the love you deserve!</span>
+            <span class="note-line pink">You are such an amazing friend and I am so grateful for you!</span>
+            <span class="note-line group-gap">
               Sending you big hugs, lots of love, and all the best wishes 🎉 on your special day 🎂
             </span>
           </p>
