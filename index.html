@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday Saniya</title>
+  <style>
+    :root {
+      --paper: #fffdf9;
+      --petal: #f4d8d4;
+      --sage: #7f927b;
+      --ink: #2f2f2b;
+      --muted: #76736c;
+      --line: rgba(127, 146, 123, 0.24);
+      --shadow: 0 22px 70px rgba(75, 62, 54, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(244, 216, 212, 0.42), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(127, 146, 123, 0.18), transparent 24rem),
+        var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.22), transparent 62%);
+      z-index: -2;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(244, 216, 212, 0.8);
+      animation: float 14s linear infinite;
+    }
+
+    .particle:nth-child(3n) {
+      width: 5px;
+      height: 5px;
+      background: rgba(127, 146, 123, 0.34);
+    }
+
+    .particle:nth-child(4n) {
+      border-radius: 2px;
+      transform: rotate(20deg);
+    }
+
+    @keyframes float {
+      from {
+        transform: translate3d(0, 110vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      14%,
+      82% {
+        opacity: 1;
+      }
+      to {
+        transform: translate3d(24px, -12vh, 0) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    .section {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 92px 22px;
+      position: relative;
+    }
+
+    .content {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--sage);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 14vw, 10rem);
+    }
+
+    h2 {
+      font-size: clamp(2.7rem, 8vw, 5.8rem);
+    }
+
+    .subtitle {
+      max-width: 610px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.4vw, 1.32rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 42px;
+    }
+
+    .soft-button {
+      border: 1px solid rgba(127, 146, 123, 0.36);
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.72);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 14px 22px;
+      min-height: 52px;
+      box-shadow: 0 12px 34px rgba(75, 62, 54, 0.08);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .soft-button:hover,
+    .soft-button:focus-visible {
+      background: white;
+      border-color: rgba(127, 146, 123, 0.7);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .flower {
+      position: absolute;
+      width: clamp(110px, 18vw, 190px);
+      aspect-ratio: 1;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .flower.top {
+      top: 42px;
+      right: max(20px, 8vw);
+    }
+
+    .flower.bottom {
+      bottom: 52px;
+      left: max(18px, 7vw);
+      transform: rotate(180deg);
+      opacity: 0.42;
+    }
+
+    .flower path,
+    .flower circle {
+      fill: none;
+      stroke: var(--sage);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .message-card {
+      max-width: 760px;
+      margin: 34px auto 0;
+      padding: clamp(28px, 6vw, 56px);
+      border: 1px solid rgba(127, 146, 123, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 253, 249, 0.68);
+      box-shadow: var(--shadow);
+      text-align: left;
+      backdrop-filter: blur(16px);
+    }
+
+    .message-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+    }
+
+    .surprise-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 330px) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(32px, 8vw, 82px);
+      margin-top: 42px;
+      text-align: left;
+    }
+
+    .gift-button {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(330px, 72vw);
+      aspect-ratio: 1;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .gift-box {
+      position: relative;
+      width: 62%;
+      height: 52%;
+      margin-top: 18%;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f2c9c4, var(--petal));
+      box-shadow: var(--shadow);
+      transition: transform 360ms ease;
+    }
+
+    .gift-box::before,
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 253, 249, 0.72);
+    }
+
+    .gift-box::before {
+      inset: 0 42%;
+    }
+
+    .gift-box::after {
+      inset: 40% 0;
+      height: 18%;
+    }
+
+    .gift-lid {
+      position: absolute;
+      top: 22%;
+      width: 72%;
+      height: 19%;
+      border-radius: 8px;
+      background: #ddb7b1;
+      box-shadow: 0 16px 30px rgba(75, 62, 54, 0.12);
+      transition: transform 420ms ease;
+      transform-origin: 18% 100%;
+      z-index: 2;
+    }
+
+    .gift-lid::before,
+    .gift-lid::after {
+      content: "";
+      position: absolute;
+      top: -58%;
+      width: 34%;
+      height: 74%;
+      border: 8px solid rgba(255, 253, 249, 0.78);
+      border-radius: 50% 50% 8px 50%;
+    }
+
+    .gift-lid::before {
+      left: 20%;
+      transform: rotate(-24deg);
+    }
+
+    .gift-lid::after {
+      right: 20%;
+      transform: rotate(24deg) scaleX(-1);
+    }
+
+    .gift-button:hover .gift-box,
+    .gift-button:focus-visible .gift-box {
+      transform: translateY(-4px);
+    }
+
+    .gift-button.open .gift-lid {
+      transform: rotate(-18deg) translate(-24px, -26px);
+    }
+
+    .gift-button.open .gift-box {
+      transform: translateY(8px);
+    }
+
+    .gift-hint {
+      position: absolute;
+      bottom: 7%;
+      color: var(--sage);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .reveal-panel {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 420ms ease, transform 420ms ease;
+    }
+
+    .reveal-panel.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-placeholder {
+      display: grid;
+      place-items: center;
+      width: min(100%, 420px);
+      aspect-ratio: 4 / 3;
+      margin-top: 22px;
+      border: 1px dashed rgba(127, 146, 123, 0.5);
+      border-radius: 8px;
+      color: var(--sage);
+      background: rgba(255, 253, 249, 0.62);
+      text-align: center;
+      padding: 24px;
+    }
+
+    .hidden-final {
+      display: none;
+      margin-top: 28px;
+    }
+
+    .hidden-final.ready {
+      display: inline-flex;
+    }
+
+    .closing {
+      position: relative;
+    }
+
+    .signature {
+      margin-top: 30px;
+      color: var(--sage);
+      font-size: 1rem;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 760ms ease, transform 760ms ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .confetti {
+      position: fixed;
+      top: -12px;
+      width: 8px;
+      height: 14px;
+      pointer-events: none;
+      animation: confettiFall 1100ms ease-in forwards;
+      z-index: 10;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translate3d(var(--drift), 105vh, 0) rotate(420deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 78px 18px;
+      }
+
+      .surprise-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .gift-button {
+        margin: 0 auto;
+      }
+
+      .reveal-panel {
+        text-align: center;
+      }
+
+      .photo-placeholder {
+        margin-inline: auto;
+      }
+
+      .flower {
+        width: 112px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true"></div>
+
+  <main>
+    <section class="section landing" id="top">
+      <svg class="flower top" viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M61 76 C57 54, 63 39, 78 27" />
+        <path d="M63 54 C47 45, 39 34, 40 20" />
+        <path d="M68 43 C86 38, 96 29, 101 16" />
+        <path d="M51 66 C37 63, 27 56, 20 44" />
+        <circle cx="80" cy="25" r="8" />
+        <circle cx="40" cy="19" r="7" />
+        <circle cx="101" cy="15" r="6" />
+        <circle cx="20" cy="44" r="6" />
+      </svg>
+      <div class="content fade-in show">
+        <p class="eyebrow">For Saniya</p>
+        <h1>saniya</h1>
+        <p class="subtitle">Happy Birthday, to the friend who makes ordinary days feel lighter.</p>
+        <div class="hero-actions">
+          <a class="soft-button" href="#message">Begin the surprise</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="message">
+      <svg class="flower bottom" viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M61 76 C57 54, 63 39, 78 27" />
+        <path d="M63 54 C47 45, 39 34, 40 20" />
+        <path d="M68 43 C86 38, 96 29, 101 16" />
+        <path d="M51 66 C37 63, 27 56, 20 44" />
+        <circle cx="80" cy="25" r="8" />
+        <circle cx="40" cy="19" r="7" />
+        <circle cx="101" cy="15" r="6" />
+        <circle cx="20" cy="44" r="6" />
+      </svg>
+      <div class="content fade-in">
+        <p class="eyebrow">A little note</p>
+        <h2>For the friend who stayed</h2>
+        <div class="message-card">
+          <p>
+            Write your heartfelt paragraph here. Tell Saniya about your friendship, the times she helped you,
+            the way she made hard days easier, and the little things you will always be grateful for.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="surprise">
+      <div class="content fade-in">
+        <p class="eyebrow">One small surprise</p>
+        <h2>Open this gently</h2>
+        <div class="surprise-grid">
+          <button class="gift-button" type="button" aria-label="Open birthday gift">
+            <span class="gift-lid"></span>
+            <span class="gift-box"></span>
+            <span class="gift-hint">click to open</span>
+          </button>
+          <div class="reveal-panel" aria-live="polite">
+            <p class="subtitle">
+              Surprise, Saniya. This little page exists because you deserve something soft, happy,
+              and made only for you.
+            </p>
+            <div class="photo-placeholder">
+              Add your favorite photo here by replacing this box with an image.
+            </div>
+            <button class="soft-button hidden-final" type="button">Unlock final message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing" id="final">
+      <div class="content fade-in">
+        <p class="eyebrow">Always grateful</p>
+        <h2>May this year be kind to you.</h2>
+        <p class="subtitle">
+          Happy Birthday, Saniya. I hope today reminds you how loved, valued, and unforgettable you are.
+        </p>
+        <p class="signature">Made with love by [YOUR NAME]</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const particles = document.querySelector(".particles");
+    const giftButton = document.querySelector(".gift-button");
+    const revealPanel = document.querySelector(".reveal-panel");
+    const finalButton = document.querySelector(".hidden-final");
+
+    function createParticles() {
+      for (let index = 0; index < 32; index += 1) {
+        const dot = document.createElement("span");
+        dot.className = "particle";
+        dot.style.left = `${Math.random() * 100}%`;
+        dot.style.animationDelay = `${Math.random() * -14}s`;
+        dot.style.animationDuration = `${12 + Math.random() * 8}s`;
+        particles.appendChild(dot);
+      }
+    }
+
+    function revealOnScroll() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.18 });
+
+      document.querySelectorAll(".fade-in").forEach((item) => observer.observe(item));
+    }
+
+    function burstConfetti(amount = 42) {
+      const colors = ["#f4d8d4", "#7f927b", "#fff4d9"];
+      for (let index = 0; index < amount; index += 1) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[index % colors.length];
+        piece.style.setProperty("--drift", `${Math.random() * 180 - 90}px`);
+        piece.style.animationDelay = `${Math.random() * 160}ms`;
+        document.body.appendChild(piece);
+        piece.addEventListener("animationend", () => piece.remove());
+      }
+    }
+
+    giftButton.addEventListener("click", () => {
+      giftButton.classList.add("open");
+      revealPanel.classList.add("visible");
+      finalButton.classList.add("ready");
+      burstConfetti(24);
+    });
+
+    finalButton.addEventListener("click", () => {
+      document.querySelector("#final").scrollIntoView({ behavior: "smooth" });
+      window.setTimeout(() => burstConfetti(64), 520);
+    });
+
+    createParticles();
+    revealOnScroll();
+  </script>
+</body>
+</html>
