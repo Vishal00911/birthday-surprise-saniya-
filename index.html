@@ -608,6 +608,99 @@
 
     .closing {
       position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .final-dreamscape {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 900ms ease;
+      z-index: -1;
+    }
+
+    .final-dreamscape::before {
+      content: "";
+      position: absolute;
+      inset: 8% 10%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(244, 196, 205, 0.3), transparent 34%),
+        radial-gradient(circle at 38% 62%, rgba(205, 193, 236, 0.2), transparent 30%),
+        radial-gradient(circle at 68% 58%, rgba(247, 207, 177, 0.22), transparent 32%);
+      filter: blur(18px);
+      transform: scale(0.92);
+      animation: romanticGlow 7s ease-in-out infinite;
+    }
+
+    .closing.final-revealed .final-dreamscape {
+      opacity: 1;
+    }
+
+    .final-float {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      color: var(--tone);
+      font-size: var(--size);
+      line-height: 1;
+      opacity: 0;
+      filter: drop-shadow(0 10px 18px rgba(232, 185, 178, 0.12));
+      animation: romanticFloat var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+
+    .final-float.flower {
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 253, 249, 0.9) 0 12%, transparent 13%),
+        conic-gradient(from 0deg, currentColor 0 13%, transparent 13% 20%, currentColor 20% 33%, transparent 33% 40%, currentColor 40% 53%, transparent 53% 60%, currentColor 60% 73%, transparent 73% 80%, currentColor 80% 93%, transparent 93%);
+    }
+
+    .final-float.petal {
+      width: calc(var(--size) * 0.72);
+      height: var(--size);
+      border-radius: 999px 999px 999px 0;
+      background: currentColor;
+      transform: rotate(var(--rotate));
+    }
+
+    .final-float.sparkle::before {
+      content: "+";
+      display: block;
+      transform: rotate(var(--rotate));
+      font-weight: 300;
+    }
+
+    .final-float.heart::before {
+      content: "♡";
+      display: block;
+    }
+
+    @keyframes romanticGlow {
+      50% {
+        transform: scale(1);
+        opacity: 0.78;
+      }
+    }
+
+    @keyframes romanticFloat {
+      0%,
+      100% {
+        transform: translate3d(0, 20px, 0) rotate(var(--rotate)) scale(0.88);
+        opacity: 0;
+      }
+      22%,
+      76% {
+        opacity: var(--opacity);
+      }
+      50% {
+        transform: translate3d(var(--drift), -30px, 0) rotate(calc(var(--rotate) + 32deg)) scale(1);
+      }
     }
 
     .closing-message {
@@ -833,6 +926,7 @@
     </section>
 
     <section class="section closing" id="final">
+      <div class="final-dreamscape" aria-hidden="true"></div>
       <div class="content fade-in">
         <p class="eyebrow">Always grateful</p>
         <p class="closing-message">
@@ -848,6 +942,8 @@
     const giftButton = document.querySelector(".gift-button");
     const revealPanel = document.querySelector(".reveal-panel");
     const finalButton = document.querySelector(".hidden-final");
+    const finalSection = document.querySelector("#final");
+    const finalDreamscape = document.querySelector(".final-dreamscape");
     const surpriseVideo = document.querySelector(".surprise-video");
 
     function createFloatingFlowers() {
@@ -906,6 +1002,36 @@
       }
     }
 
+    function createFinalDreamscape() {
+      if (finalDreamscape.dataset.ready === "true") return;
+
+      const tones = [
+        "rgba(244, 196, 205, 0.62)",
+        "rgba(205, 193, 236, 0.52)",
+        "rgba(247, 207, 177, 0.56)",
+        "rgba(232, 185, 178, 0.48)"
+      ];
+      const types = ["flower", "petal", "sparkle", "heart"];
+
+      for (let index = 0; index < 42; index += 1) {
+        const item = document.createElement("span");
+        const type = types[index % types.length];
+        item.className = `final-float ${type}`;
+        item.style.setProperty("--x", `${4 + Math.random() * 92}%`);
+        item.style.setProperty("--y", `${5 + Math.random() * 86}%`);
+        item.style.setProperty("--tone", tones[index % tones.length]);
+        item.style.setProperty("--size", `${type === "sparkle" ? 18 + Math.random() * 18 : 14 + Math.random() * 26}px`);
+        item.style.setProperty("--duration", `${6 + Math.random() * 6}s`);
+        item.style.setProperty("--delay", `${Math.random() * -8}s`);
+        item.style.setProperty("--drift", `${Math.random() * 90 - 45}px`);
+        item.style.setProperty("--rotate", `${Math.random() * 180 - 90}deg`);
+        item.style.setProperty("--opacity", `${0.28 + Math.random() * 0.34}`);
+        finalDreamscape.appendChild(item);
+      }
+
+      finalDreamscape.dataset.ready = "true";
+    }
+
     giftButton.addEventListener("click", () => {
       giftButton.classList.add("open");
       revealPanel.classList.add("visible");
@@ -918,6 +1044,8 @@
     });
 
     finalButton.addEventListener("click", () => {
+      createFinalDreamscape();
+      finalSection.classList.add("final-revealed");
       document.querySelector("#final").scrollIntoView({ behavior: "smooth" });
       window.setTimeout(() => burstConfetti(64), 520);
     });
