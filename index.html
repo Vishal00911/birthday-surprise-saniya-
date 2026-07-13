@@ -68,6 +68,19 @@
       z-index: -1;
     }
 
+    .floating-flowers::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(244, 196, 205, 0.24), transparent 32rem),
+        radial-gradient(circle at 18% 58%, rgba(205, 193, 236, 0.16), transparent 28rem),
+        radial-gradient(circle at 82% 66%, rgba(247, 207, 177, 0.18), transparent 30rem);
+      filter: blur(14px);
+      opacity: 0.78;
+      animation: ambientGlow 10s ease-in-out infinite;
+    }
+
     .float-flower {
       position: absolute;
       width: var(--size);
@@ -127,6 +140,35 @@
       filter: blur(0.2px);
       opacity: 0;
       animation: flowerFloat var(--duration) linear infinite;
+    }
+
+    .float-heart,
+    .float-sparkle {
+      position: absolute;
+      color: var(--bloom-a, var(--dream-pink));
+      font-size: var(--size);
+      line-height: 1;
+      opacity: 0;
+      filter: drop-shadow(0 10px 18px rgba(232, 185, 178, 0.1));
+      animation: flowerFloat var(--duration) linear infinite;
+    }
+
+    .float-heart::before {
+      content: "♡";
+    }
+
+    .float-sparkle::before {
+      content: "+";
+      display: block;
+      transform: rotate(var(--rotate, 28deg));
+      font-weight: 300;
+    }
+
+    @keyframes ambientGlow {
+      50% {
+        opacity: 1;
+        transform: scale(1.03);
+      }
     }
 
     @keyframes flowerFloat {
@@ -953,25 +995,29 @@
         ["rgba(247, 207, 177, 0.56)", "rgba(244, 196, 205, 0.48)", "rgba(205, 193, 236, 0.38)", "rgba(255, 231, 210, 0.42)", "rgba(244, 196, 205, 0.34)"]
       ];
 
-      for (let index = 0; index < 34; index += 1) {
+      const types = ["float-flower", "float-flower", "float-petal", "float-heart", "float-sparkle"];
+
+      for (let index = 0; index < 54; index += 1) {
         const item = document.createElement("span");
-        const isFlower = index % 4 !== 0;
+        const type = types[index % types.length];
+        const isFlower = type === "float-flower";
         const palette = palettes[index % palettes.length];
-        item.className = isFlower ? "float-flower" : "float-petal";
+        item.className = type;
         if (isFlower) {
           item.appendChild(document.createElement("span"));
         }
         item.style.left = `${Math.random() * 100}%`;
-        item.style.setProperty("--size", `${isFlower ? 10 + Math.random() * 20 : 6 + Math.random() * 10}px`);
-        item.style.setProperty("--drift", `${Math.random() * 180 - 90}px`);
-        item.style.setProperty("--duration", `${22 + Math.random() * 16}s`);
-        item.style.setProperty("--float-opacity", `${0.38 + Math.random() * 0.36}`);
+        item.style.setProperty("--size", `${isFlower ? 10 + Math.random() * 20 : 10 + Math.random() * 16}px`);
+        item.style.setProperty("--drift", `${Math.random() * 210 - 105}px`);
+        item.style.setProperty("--duration", `${24 + Math.random() * 18}s`);
+        item.style.setProperty("--float-opacity", `${0.26 + Math.random() * 0.34}`);
         item.style.setProperty("--bloom-a", palette[0]);
         item.style.setProperty("--bloom-b", palette[1]);
         item.style.setProperty("--bloom-c", palette[2]);
         item.style.setProperty("--bloom-d", palette[3]);
         item.style.setProperty("--bloom-e", palette[4]);
-        item.style.animationDelay = `${Math.random() * -34}s`;
+        item.style.setProperty("--rotate", `${Math.random() * 180 - 90}deg`);
+        item.style.animationDelay = `${Math.random() * -38}s`;
         floatingFlowers.appendChild(item);
       }
     }
