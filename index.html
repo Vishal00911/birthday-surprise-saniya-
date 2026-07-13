@@ -343,21 +343,65 @@
     }
 
     .message-card {
-      max-width: 760px;
-      margin: 34px auto 0;
-      padding: clamp(28px, 6vw, 56px);
-      border: 1px solid rgba(127, 146, 123, 0.22);
-      border-radius: 8px;
-      background: rgba(255, 253, 249, 0.68);
-      box-shadow: var(--shadow);
+      max-width: 980px;
+      margin: 46px auto 0;
+      padding: clamp(8px, 2vw, 18px) 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
       text-align: left;
-      backdrop-filter: blur(16px);
     }
 
     .message-card p {
       margin: 0;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+    }
+
+    .note-kicker {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 0 0 42px;
+      color: var(--petal-deep);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .note-kicker::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.9;
+    }
+
+    .message-lines {
+      color: #171717;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.8rem, 7.6vw, 5.85rem);
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 0.96;
+    }
+
+    .message-lines .blush {
+      display: block;
+      color: var(--petal-deep);
+    }
+
+    .message-lines .small-break {
+      display: block;
+      margin-top: 0.34em;
+    }
+
+    .message-lines .closing-note {
+      display: block;
+      margin-top: 0.42em;
+      font-size: clamp(2.05rem, 5vw, 4rem);
+      line-height: 1.05;
     }
 
     .surprise-grid {
@@ -563,6 +607,25 @@
         width: 112px;
       }
 
+      .message-card {
+        margin-top: 34px;
+      }
+
+      .note-kicker {
+        gap: 12px;
+        margin-bottom: 28px;
+        font-size: 0.66rem;
+        letter-spacing: 0.18em;
+      }
+
+      .note-kicker::before {
+        width: 28px;
+      }
+
+      .message-lines {
+        font-size: clamp(2.55rem, 12vw, 4.2rem);
+      }
+
       .hero-pill {
         margin-bottom: 34px;
         padding-inline: 18px;
@@ -635,11 +698,16 @@
       </svg>
       <div class="content fade-in">
         <p class="eyebrow">A little note</p>
-        <h2>For the friend who stayed</h2>
         <div class="message-card">
-          <p>
-            Write your heartfelt paragraph here. Tell Saniya about your friendship, the times she helped you,
-            the way she made hard days easier, and the little things you will always be grateful for.
+          <p class="note-kicker">A note from me</p>
+          <p class="message-lines">
+            I hope your day is filled with
+            <span class="blush">so much happiness, laughter,</span>
+            and all the love you deserve!
+            <span class="small-break">You are such an amazing friend and I am so grateful for you!</span>
+            <span class="closing-note">
+              Sending you big hugs, lots of love, and all the best wishes 🎉 on your special day 🎂
+            </span>
           </p>
         </div>
       </div>
